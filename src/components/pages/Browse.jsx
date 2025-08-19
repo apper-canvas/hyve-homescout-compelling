@@ -133,7 +133,19 @@ case "price-low":
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+<div className="flex items-center space-x-4">
+            {/* Create Property Button */}
+            <Button
+              onClick={() => {
+                // Navigate to create property page or open modal
+                console.log("Create new property");
+              }}
+              className="bg-gradient-to-r from-primary to-primary/90 text-white hover:from-primary/90 hover:to-primary/80 transition-all duration-200 shadow-sm hover:shadow-md flex items-center space-x-2 px-4 py-2.5"
+            >
+              <ApperIcon name="Plus" size={16} />
+              <span className="font-medium">Create Property</span>
+            </Button>
+
             {/* Sort */}
             <div className="flex items-center space-x-2">
               <label className="text-sm font-medium text-gray-700">Sort by:</label>
