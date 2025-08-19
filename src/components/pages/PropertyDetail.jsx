@@ -8,17 +8,18 @@ import Badge from "@/components/atoms/Badge";
 import PropertyImageGallery from "@/components/molecules/PropertyImageGallery";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
+import MortgageCalculator from "@/components/molecules/MortgageCalculator";
 import { propertyService } from "@/services/api/propertyService";
 import { savedPropertyService } from "@/services/api/savedPropertyService";
-
 const PropertyDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [property, setProperty] = useState(null);
+const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [isSaved, setIsSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [showMortgageCalculator, setShowMortgageCalculator] = useState(false);
 
   useEffect(() => {
     const loadProperty = async () => {
@@ -71,8 +72,12 @@ const PropertyDetail = () => {
     }
   };
 
-  const handleBack = () => {
+const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleMortgageCalculator = () => {
+    setShowMortgageCalculator(true);
   };
 
   const formatPrice = (price) => {
@@ -319,12 +324,30 @@ const PropertyDetail = () => {
                     {formatPrice(property.price)}
                   </span>
                 </div>
-              </div>
-            </div>
+</div>
           </div>
 
-          {/* Map Preview */}
+          {/* Mortgage Calculator */}
           <div className="bg-surface rounded-2xl p-6 shadow-card">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <ApperIcon name="Calculator" size={20} />
+              Mortgage Calculator
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Calculate your estimated monthly payments for this property.
+            </p>
+            <Button 
+              onClick={handleMortgageCalculator}
+              className="w-full bg-primary hover:bg-primary/90 text-white"
+            >
+              <ApperIcon name="Calculator" size={18} className="mr-2" />
+              Calculate Mortgage
+            </Button>
+          </div>
+        </div>
+
+        {/* Map Preview */}
+        <div className="bg-surface rounded-2xl p-6 shadow-card">
             <h4 className="text-lg font-display font-semibold text-gray-900 mb-4">
               Location
             </h4>
@@ -345,12 +368,21 @@ const PropertyDetail = () => {
             >
               <ApperIcon name="Map" size={16} className="mr-2" />
               View on Map
-            </Button>
-          </div>
-        </motion.div>
-      </div>
+</Button>
+        </div>
+
+        {/* Mortgage Calculator Modal */}
+        {showMortgageCalculator && (
+          <MortgageCalculator
+            property={property}
+            isOpen={showMortgageCalculator}
+            onClose={() => setShowMortgageCalculator(false)}
+          />
+        )}
+      </motion.div>
     </div>
-  );
+  </div>
+);
 };
 
 export default PropertyDetail;
