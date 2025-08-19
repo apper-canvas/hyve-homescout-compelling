@@ -1,0 +1,252 @@
+[
+  {
+    "Id": 1,
+    "title": "Modern Luxury Penthouse",
+    "price": 1250000,
+    "address": {
+      "street": "456 Skyline Avenue",
+      "city": "Seattle",
+      "state": "WA",
+      "zipCode": "98101",
+      "full": "456 Skyline Avenue, Seattle, WA 98101"
+    },
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "squareFeet": 2800,
+    "propertyType": "Condo",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop"
+    ],
+    "description": "Stunning modern penthouse with panoramic city views, floor-to-ceiling windows, and premium finishes throughout. Features an open-concept living space, gourmet kitchen, and private balcony.",
+    "features": ["City Views", "Balcony", "Parking Garage", "Gym", "Concierge", "Rooftop Deck"],
+    "listingDate": "2024-01-15T00:00:00Z",
+    "coordinates": { "lat": 47.6062, "lng": -122.3321 }
+  },
+  {
+    "Id": 2,
+    "title": "Charming Victorian Home",
+    "price": 850000,
+    "address": {
+      "street": "789 Heritage Lane",
+      "city": "San Francisco",
+      "state": "CA",
+      "zipCode": "94102",
+      "full": "789 Heritage Lane, San Francisco, CA 94102"
+    },
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2400,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop"
+    ],
+    "description": "Beautifully restored Victorian home with original hardwood floors, ornate moldings, and period details. Updated kitchen and bathrooms while maintaining historic charm.",
+    "features": ["Hardwood Floors", "Garden", "Fireplace", "Original Details", "Updated Kitchen", "Bay Windows"],
+    "listingDate": "2024-01-12T00:00:00Z",
+    "coordinates": { "lat": 37.7749, "lng": -122.4194 }
+  },
+  {
+    "Id": 3,
+    "title": "Contemporary Townhouse",
+    "price": 675000,
+    "address": {
+      "street": "321 Urban Square",
+      "city": "Portland",
+      "state": "OR",
+      "zipCode": "97201",
+      "full": "321 Urban Square, Portland, OR 97201"
+    },
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "squareFeet": 1950,
+    "propertyType": "Townhouse",
+    "images": [
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600563438938-a42d5a772978?w=800&h=600&fit=crop"
+    ],
+    "description": "Sleek contemporary townhouse in vibrant urban neighborhood. Open floor plan, modern finishes, and private patio. Walking distance to restaurants and shops.",
+    "features": ["Open Floor Plan", "Private Patio", "Modern Kitchen", "Walk-in Closets", "Two-Car Garage", "Energy Efficient"],
+    "listingDate": "2024-01-18T00:00:00Z",
+    "coordinates": { "lat": 45.5152, "lng": -122.6784 }
+  },
+  {
+    "Id": 4,
+    "title": "Lakefront Family Estate",
+    "price": 1850000,
+    "address": {
+      "street": "1024 Lakeshore Drive",
+      "city": "Austin",
+      "state": "TX",
+      "zipCode": "78746",
+      "full": "1024 Lakeshore Drive, Austin, TX 78746"
+    },
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "squareFeet": 4200,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop"
+    ],
+    "description": "Magnificent lakefront estate with private dock and stunning water views. Spacious family home with multiple living areas, gourmet kitchen, and resort-style backyard.",
+    "features": ["Lake Views", "Private Dock", "Pool", "Chef's Kitchen", "Wine Cellar", "Guest Suite", "Boat Lift"],
+    "listingDate": "2024-01-08T00:00:00Z",
+    "coordinates": { "lat": 30.2672, "lng": -97.7431 }
+  },
+  {
+    "Id": 5,
+    "title": "Cozy Craftsman Bungalow",
+    "price": 425000,
+    "address": {
+      "street": "567 Maple Street",
+      "city": "Denver",
+      "state": "CO",
+      "zipCode": "80218",
+      "full": "567 Maple Street, Denver, CO 80218"
+    },
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "squareFeet": 1450,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1600566752229-450a38458c85?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop"
+    ],
+    "description": "Adorable craftsman bungalow with original built-ins, exposed beams, and cozy front porch. Perfect starter home in established neighborhood with mature trees.",
+    "features": ["Front Porch", "Built-in Storage", "Hardwood Floors", "Updated Kitchen", "Fenced Yard", "Mature Trees"],
+    "listingDate": "2024-01-20T00:00:00Z",
+    "coordinates": { "lat": 39.7392, "lng": -104.9903 }
+  },
+  {
+    "Id": 6,
+    "title": "Luxury High-Rise Apartment",
+    "price": 950000,
+    "address": {
+      "street": "888 Metropolitan Plaza",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60611",
+      "full": "888 Metropolitan Plaza, Chicago, IL 60611"
+    },
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "squareFeet": 1850,
+    "propertyType": "Condo",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop"
+    ],
+    "description": "Sophisticated high-rise living with floor-to-ceiling windows and spectacular city views. Premium building amenities including pool, fitness center, and 24-hour concierge.",
+    "features": ["City Views", "Pool", "Fitness Center", "Concierge", "Valet Parking", "Rooftop Terrace", "In-Unit Laundry"],
+    "listingDate": "2024-01-14T00:00:00Z",
+    "coordinates": { "lat": 41.8781, "lng": -87.6298 }
+  },
+  {
+    "Id": 7,
+    "title": "Mountain Retreat Cabin",
+    "price": 525000,
+    "address": {
+      "street": "192 Pine Ridge Road",
+      "city": "Aspen",
+      "state": "CO",
+      "zipCode": "81611",
+      "full": "192 Pine Ridge Road, Aspen, CO 81611"
+    },
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "squareFeet": 1750,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566752229-450a38458c85?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=600&fit=crop"
+    ],
+    "description": "Stunning mountain cabin with rustic charm and modern amenities. Stone fireplace, vaulted ceilings, and wrap-around deck with breathtaking mountain views.",
+    "features": ["Mountain Views", "Stone Fireplace", "Wrap-around Deck", "Vaulted Ceilings", "Hot Tub", "Ski Storage"],
+    "listingDate": "2024-01-22T00:00:00Z",
+    "coordinates": { "lat": 39.1911, "lng": -106.8175 }
+  },
+  {
+    "Id": 8,
+    "title": "Beach House Paradise",
+    "price": 1150000,
+    "address": {
+      "street": "777 Ocean Boulevard",
+      "city": "Santa Monica",
+      "state": "CA",
+      "zipCode": "90401",
+      "full": "777 Ocean Boulevard, Santa Monica, CA 90401"
+    },
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2200,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1600563438938-a42d5a772978?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
+    ],
+    "description": "Beautiful beach house just steps from the ocean. Open concept design with large windows, coastal finishes, and outdoor entertainment spaces perfect for beach living.",
+    "features": ["Ocean Views", "Steps to Beach", "Outdoor Kitchen", "Large Windows", "Coastal Design", "Parking"],
+    "listingDate": "2024-01-10T00:00:00Z",
+    "coordinates": { "lat": 34.0195, "lng": -118.4912 }
+  },
+  {
+    "Id": 9,
+    "title": "Urban Loft Studio",
+    "price": 385000,
+    "address": {
+      "street": "234 Industrial Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zipCode": "11201",
+      "full": "234 Industrial Way, Brooklyn, NY 11201"
+    },
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "squareFeet": 850,
+    "propertyType": "Condo",
+    "images": [
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&h=600&fit=crop"
+    ],
+    "description": "Industrial chic loft in converted warehouse. High ceilings, exposed brick, and large windows. Prime location in trendy neighborhood with great restaurants and nightlife.",
+    "features": ["High Ceilings", "Exposed Brick", "Large Windows", "Industrial Design", "Trendy Neighborhood", "Close to Transit"],
+    "listingDate": "2024-01-25T00:00:00Z",
+    "coordinates": { "lat": 40.6782, "lng": -73.9442 }
+  },
+  {
+    "Id": 10,
+    "title": "Suburban Family Home",
+    "price": 565000,
+    "address": {
+      "street": "123 Oak Tree Lane",
+      "city": "Phoenix",
+      "state": "AZ",
+      "zipCode": "85016",
+      "full": "123 Oak Tree Lane, Phoenix, AZ 85016"
+    },
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "squareFeet": 2650,
+    "propertyType": "House",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1600566752229-450a38458c85?w=800&h=600&fit=crop"
+    ],
+    "description": "Perfect family home in quiet suburban neighborhood. Spacious floor plan with formal dining, family room, and large backyard. Top-rated schools nearby.",
+    "features": ["Large Backyard", "Two-Car Garage", "Family Room", "Formal Dining", "Top Schools", "Quiet Neighborhood"],
+    "listingDate": "2024-01-16T00:00:00Z",
+    "coordinates": { "lat": 33.4484, "lng": -112.0740 }
+  }
+]
