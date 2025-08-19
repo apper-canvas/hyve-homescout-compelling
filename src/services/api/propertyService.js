@@ -259,9 +259,8 @@ export const propertyService = {
       
       return Array.from(locations).slice(0, 5);
     } catch (error) {
-      console.error("Search suggestions error:", error);
+console.error("Search suggestions error:", error);
       return [];
     }
-return [];
-    }
   }
+};
