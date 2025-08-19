@@ -17,11 +17,11 @@ const FilterSidebar = ({ onFiltersChange, initialFilters = {} }) => {
     ...initialFilters
   });
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
+const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
     onFiltersChange(filters);
-  }, [filters, onFiltersChange]);
+  }, [filters]); // Remove onFiltersChange from deps to prevent infinite loop
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({
