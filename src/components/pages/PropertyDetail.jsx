@@ -37,8 +37,13 @@ const [property, setProperty] = useState(null);
         } catch {
           // Property not saved, which is fine
         }
-      } catch (err) {
-        setError(err.message || "Failed to load property details");
+} catch (err) {
+        const errorMessage = err.message || "Failed to load property details";
+        if (errorMessage.includes("not found") || errorMessage.includes("does not exist")) {
+          setError("notFound");
+        } else {
+          setError(errorMessage);
+        }
       } finally {
         setLoading(false);
       }

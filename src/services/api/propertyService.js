@@ -1,5 +1,4 @@
-import React from "react";
-import Error from "@/components/ui/Error";
+// Property service for handling property data operations
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Initialize ApperClient
