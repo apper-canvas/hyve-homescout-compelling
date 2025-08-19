@@ -1,64 +1,243 @@
-import propertiesData from "@/services/mockData/properties.json";
-
-let properties = [...propertiesData];
-
+import React from "react";
+import Error from "@/components/ui/Error";
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Initialize ApperClient
+const getApperClient = () => {
+  const { ApperClient } = window.ApperSDK;
+  return new ApperClient({
+    apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+    apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+  });
+};
 
 export const propertyService = {
   async getAll(filters = {}) {
-    await delay(300);
-    
-    let filteredProperties = [...properties];
-    
-    // Filter by price range
-    if (filters.priceMin) {
-      filteredProperties = filteredProperties.filter(p => p.price >= filters.priceMin);
+    try {
+      const apperClient = getApperClient();
+      const tableName = 'property_c';
+      
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "address_c" } },
+          { field: { Name: "city_c" } },
+          { field: { Name: "full_c" } },
+          { field: { Name: "state_c" } },
+          { field: { Name: "street_c" } },
+          { field: { Name: "zip_code_c" } },
+          { field: { Name: "bathrooms_c" } },
+          { field: { Name: "bedrooms_c" } },
+          { field: { Name: "coordinates_c" } },
+          { field: { Name: "lat_c" } },
+          { field: { Name: "lng_c" } },
+          { field: { Name: "description_c" } },
+          { field: { Name: "listing_date_c" } },
+          { field: { Name: "price_c" } },
+          { field: { Name: "property_type_c" } },
+          { field: { Name: "square_feet_c" } },
+          { field: { Name: "title_c" } },
+          { field: { Name: "images_c" } },
+          { field: { Name: "features_c" } }
+        ],
+        where: [],
+        orderBy: [
+          {
+            fieldName: "listing_date_c",
+            sorttype: "DESC"
+          }
+        ]
+      };
+
+      // Apply filters
+      if (filters.priceMin) {
+        params.where.push({
+          FieldName: "price_c",
+          Operator: "GreaterThanOrEqualTo",
+          Values: [parseFloat(filters.priceMin)]
+        });
+      }
+      if (filters.priceMax) {
+        params.where.push({
+          FieldName: "price_c",
+          Operator: "LessThanOrEqualTo",
+          Values: [parseFloat(filters.priceMax)]
+        });
+      }
+      if (filters.bedrooms) {
+        params.where.push({
+          FieldName: "bedrooms_c",
+          Operator: "GreaterThanOrEqualTo",
+          Values: [parseInt(filters.bedrooms)]
+        });
+      }
+      if (filters.bathrooms) {
+        params.where.push({
+          FieldName: "bathrooms_c",
+          Operator: "GreaterThanOrEqualTo",
+          Values: [parseFloat(filters.bathrooms)]
+        });
+      }
+      if (filters.propertyTypes && filters.propertyTypes.length > 0) {
+        params.where.push({
+          FieldName: "property_type_c",
+          Operator: "ExactMatch",
+          Values: filters.propertyTypes
+        });
+      }
+      if (filters.location && filters.location.trim()) {
+        params.whereGroups = [{
+          operator: "OR",
+          subGroups: [
+            {
+              conditions: [{
+                fieldName: "city_c",
+                operator: "Contains",
+                values: [filters.location.trim()]
+              }],
+              operator: "OR"
+            },
+            {
+              conditions: [{
+                fieldName: "state_c",
+                operator: "Contains",
+                values: [filters.location.trim()]
+              }],
+              operator: "OR"
+            },
+            {
+              conditions: [{
+                fieldName: "zip_code_c",
+                operator: "Contains",
+                values: [filters.location.trim()]
+              }],
+              operator: "OR"
+            }
+          ]
+        }];
+      }
+
+      const response = await apperClient.fetchRecords(tableName, params);
+      
+      if (!response.success) {
+        console.error(response.message);
+        throw new Error(response.message);
+      }
+
+      // Transform database response to match UI expectations
+      const properties = response.data.map(item => ({
+        Id: item.Id,
+        title: item.title_c || item.Name,
+        price: parseFloat(item.price_c) || 0,
+        bedrooms: parseInt(item.bedrooms_c) || 0,
+        bathrooms: parseFloat(item.bathrooms_c) || 0,
+        squareFeet: parseInt(item.square_feet_c) || 0,
+        propertyType: item.property_type_c || '',
+        description: item.description_c || '',
+        listingDate: item.listing_date_c || new Date().toISOString(),
+        images: item.images_c ? item.images_c.split(',').map(img => img.trim()) : ['/placeholder-property.jpg'],
+        features: item.features_c ? item.features_c.split(',').map(f => f.trim()) : [],
+        address: {
+          street: item.street_c || '',
+          city: item.city_c || '',
+          state: item.state_c || '',
+          zipCode: item.zip_code_c || '',
+          full: item.full_c || `${item.street_c || ''}, ${item.city_c || ''}, ${item.state_c || ''} ${item.zip_code_c || ''}`
+        },
+        coordinates: {
+          lat: parseFloat(item.lat_c) || 0,
+          lng: parseFloat(item.lng_c) || 0
+        }
+      }));
+
+      return properties;
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching properties:", error.response.data.message);
+      } else {
+        console.error("Error fetching properties:", error.message);
+      }
+      throw error;
     }
-    if (filters.priceMax) {
-      filteredProperties = filteredProperties.filter(p => p.price <= filters.priceMax);
-    }
-    
-    // Filter by bedrooms
-    if (filters.bedrooms && filters.bedrooms > 0) {
-      filteredProperties = filteredProperties.filter(p => p.bedrooms >= filters.bedrooms);
-    }
-    
-    // Filter by bathrooms
-    if (filters.bathrooms && filters.bathrooms > 0) {
-      filteredProperties = filteredProperties.filter(p => p.bathrooms >= filters.bathrooms);
-    }
-    
-    // Filter by property types
-    if (filters.propertyTypes && filters.propertyTypes.length > 0) {
-      filteredProperties = filteredProperties.filter(p => 
-        filters.propertyTypes.includes(p.propertyType)
-      );
-    }
-    
-    // Filter by location (search in address fields)
-    if (filters.location && filters.location.trim()) {
-      const searchTerm = filters.location.toLowerCase();
-      filteredProperties = filteredProperties.filter(p => 
-        p.address.city.toLowerCase().includes(searchTerm) ||
-        p.address.state.toLowerCase().includes(searchTerm) ||
-        p.address.zipCode.includes(searchTerm) ||
-        p.address.street.toLowerCase().includes(searchTerm)
-      );
-    }
-    
-    // Sort by listing date (newest first)
-    filteredProperties.sort((a, b) => new Date(b.listingDate) - new Date(a.listingDate));
-    
-    return filteredProperties;
   },
 
   async getById(id) {
-    await delay(200);
-    const property = properties.find(p => p.Id === parseInt(id));
-    if (!property) {
-      throw new Error("Property not found");
+    try {
+      const apperClient = getApperClient();
+      const tableName = 'property_c';
+      
+      const params = {
+        fields: [
+          { field: { Name: "Name" } },
+          { field: { Name: "address_c" } },
+          { field: { Name: "city_c" } },
+          { field: { Name: "full_c" } },
+          { field: { Name: "state_c" } },
+          { field: { Name: "street_c" } },
+          { field: { Name: "zip_code_c" } },
+          { field: { Name: "bathrooms_c" } },
+          { field: { Name: "bedrooms_c" } },
+          { field: { Name: "coordinates_c" } },
+          { field: { Name: "lat_c" } },
+          { field: { Name: "lng_c" } },
+          { field: { Name: "description_c" } },
+          { field: { Name: "listing_date_c" } },
+          { field: { Name: "price_c" } },
+          { field: { Name: "property_type_c" } },
+          { field: { Name: "square_feet_c" } },
+          { field: { Name: "title_c" } },
+          { field: { Name: "images_c" } },
+          { field: { Name: "features_c" } }
+        ]
+      };
+
+      const response = await apperClient.getRecordById(tableName, parseInt(id), params);
+      
+      if (!response.success) {
+        console.error(response.message);
+        throw new Error(response.message);
+      }
+
+      if (!response.data) {
+        throw new Error("Property not found");
+      }
+
+      // Transform database response to match UI expectations
+      const item = response.data;
+      const property = {
+        Id: item.Id,
+        title: item.title_c || item.Name,
+        price: parseFloat(item.price_c) || 0,
+        bedrooms: parseInt(item.bedrooms_c) || 0,
+        bathrooms: parseFloat(item.bathrooms_c) || 0,
+        squareFeet: parseInt(item.square_feet_c) || 0,
+        propertyType: item.property_type_c || '',
+        description: item.description_c || '',
+        listingDate: item.listing_date_c || new Date().toISOString(),
+        images: item.images_c ? item.images_c.split(',').map(img => img.trim()) : ['/placeholder-property.jpg'],
+        features: item.features_c ? item.features_c.split(',').map(f => f.trim()) : [],
+        address: {
+          street: item.street_c || '',
+          city: item.city_c || '',
+          state: item.state_c || '',
+          zipCode: item.zip_code_c || '',
+          full: item.full_c || `${item.street_c || ''}, ${item.city_c || ''}, ${item.state_c || ''} ${item.zip_code_c || ''}`
+        },
+        coordinates: {
+          lat: parseFloat(item.lat_c) || 0,
+          lng: parseFloat(item.lng_c) || 0
+        }
+      };
+
+      return property;
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error(`Error fetching property with ID ${id}:`, error.response.data.message);
+      } else {
+        console.error("Error fetching property:", error.message);
+      }
+      throw error;
     }
-    return { ...property };
   },
 
   async searchByLocation(query) {
@@ -68,55 +247,21 @@ export const propertyService = {
       return [];
     }
     
-    const searchTerm = query.toLowerCase().trim();
-    
-    // Get unique locations matching the search
-    const matchingProperties = properties.filter(p => 
-      p.address.city.toLowerCase().includes(searchTerm) ||
-      p.address.state.toLowerCase().includes(searchTerm) ||
-      p.address.zipCode.includes(searchTerm) ||
-      p.address.street.toLowerCase().includes(searchTerm)
-    );
-    
-    // Extract unique locations
-    const locations = new Set();
-    matchingProperties.forEach(p => {
-      locations.add(`${p.address.city}, ${p.address.state}`);
-      locations.add(p.address.zipCode);
-    });
-    
-    return Array.from(locations).slice(0, 5);
-  },
-
-  async create(property) {
-    await delay(400);
-    const maxId = Math.max(...properties.map(p => p.Id));
-    const newProperty = {
-      ...property,
-      Id: maxId + 1,
-      listingDate: new Date().toISOString()
-    };
-    properties.push(newProperty);
-    return { ...newProperty };
-  },
-
-  async update(id, updates) {
-    await delay(400);
-    const index = properties.findIndex(p => p.Id === parseInt(id));
-    if (index === -1) {
-      throw new Error("Property not found");
+    try {
+      const properties = await this.getAll({ location: query });
+      
+      // Extract unique locations
+      const locations = new Set();
+      properties.forEach(p => {
+        locations.add(`${p.address.city}, ${p.address.state}`);
+        locations.add(p.address.zipCode);
+      });
+      
+      return Array.from(locations).slice(0, 5);
+    } catch (error) {
+      console.error("Search suggestions error:", error);
+      return [];
     }
-    properties[index] = { ...properties[index], ...updates };
-    return { ...properties[index] };
-  },
-
-  async delete(id) {
-    await delay(300);
-    const index = properties.findIndex(p => p.Id === parseInt(id));
-    if (index === -1) {
-      throw new Error("Property not found");
+return [];
     }
-    const deleted = properties.splice(index, 1)[0];
-    return { ...deleted };
   }
-};

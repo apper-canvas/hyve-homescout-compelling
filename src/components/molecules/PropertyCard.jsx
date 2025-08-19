@@ -121,7 +121,7 @@ const PropertyCard = ({ property, index = 0 }) => {
           <h3 className="text-2xl font-display font-bold text-gray-900 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
             {formatPrice(property.price)}
           </h3>
-          <div className="flex items-center space-x-1 text-sm text-secondary">
+<div className="flex items-center space-x-1 text-sm text-secondary">
             <ApperIcon name="Calendar" size={14} />
             <span>{new Date(property.listingDate).toLocaleDateString()}</span>
           </div>

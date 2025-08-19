@@ -157,7 +157,7 @@ const handleBack = () => {
                 <h1 className="text-3xl font-display font-bold text-gray-900 mb-2">
                   {property.title}
                 </h1>
-                <div className="flex items-center space-x-2 text-secondary">
+<div className="flex items-center space-x-2 text-secondary">
                   <ApperIcon name="MapPin" size={16} />
                   <span>{property.address.full}</span>
                 </div>
@@ -364,7 +364,7 @@ const handleBack = () => {
             <Button
               variant="outline"
               className="w-full mt-4"
-              onClick={() => navigate(`/map?property=${property.Id}`)}
+onClick={() => navigate(`/map?property=${property.Id}`)}
             >
               <ApperIcon name="Map" size={16} className="mr-2" />
               View on Map

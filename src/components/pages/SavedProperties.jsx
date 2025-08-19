@@ -39,7 +39,7 @@ const SavedProperties = () => {
 
       // Sort by save date (most recent first)
       const sortedBySaveDate = validProperties.map(property => {
-        const savedInfo = saved.find(sp => sp.propertyId === property.Id.toString());
+const savedInfo = saved.find(sp => sp.propertyId === property.Id.toString());
         return {
           ...property,
           savedDate: savedInfo?.savedDate,

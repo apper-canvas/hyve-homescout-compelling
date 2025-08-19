@@ -37,7 +37,7 @@ const MapView = () => {
           sortedResults.sort((a, b) => b.price - a.price);
           break;
         case "newest":
-          sortedResults.sort((a, b) => new Date(b.listingDate) - new Date(a.listingDate));
+sortedResults.sort((a, b) => new Date(b.listingDate) - new Date(a.listingDate));
           break;
         default:
           break;

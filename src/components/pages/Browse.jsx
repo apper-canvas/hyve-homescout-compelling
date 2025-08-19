@@ -31,7 +31,7 @@ const Browse = () => {
       // Apply sorting
       let sortedResults = [...results];
       switch (sortBy) {
-        case "price-low":
+case "price-low":
           sortedResults.sort((a, b) => a.price - b.price);
           break;
         case "price-high":
